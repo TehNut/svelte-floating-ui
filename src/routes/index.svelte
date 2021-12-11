@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createFloatingUIActions, offset, shift, flip } from "$lib/floating";
+  import { createFloatingUIActions, offset, shift, flip } from "$lib";
 
   const [ floatingRef, floatingContent, update ] = createFloatingUIActions({
     strategy: "absolute",
