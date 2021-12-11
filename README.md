@@ -61,7 +61,7 @@ If both are set, then the dynamic options will be merged with the initial option
 ```svelte
 <script>
   // set once and no longer updated
-  const [ floatinRef, floatingContent ] = createFloatingUIActions(initOptions);
+  const [ floatingRef, floatingContent ] = createFloatingUIActions(initOptions);
 </script>
 
 <!-- will be merged with initOptions -->
@@ -75,7 +75,7 @@ The content element's position can be manually updated by using the third value 
 ```svelte
 <script>
   // Get update method
-  const [ , , update] = createFloatingUIActions(initOptions);
+  const [ floatingRef, floatingContent, update] = createFloatingUIActions(initOptions);
 </script>
 
 <!-- Will be merged with initOptions -->
