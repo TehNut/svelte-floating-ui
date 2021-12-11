@@ -3,32 +3,6 @@ import type {
 } from '@floating-ui/core';
 import { computePosition } from "@floating-ui/dom";
 
-import {
-  arrow,
-  autoPlacement,
-  flip,
-  hide,
-  offset,
-  shift,
-  limitShift,
-  size,
-  getScrollParents,
-  detectOverflow,
-} from "@floating-ui/dom";
-
-export {   
-  arrow,
-  autoPlacement,
-  flip,
-  hide,
-  offset,
-  shift,
-  limitShift,
-  size,
-  getScrollParents,
-  detectOverflow, 
-};
-
 type ComputeConfig = Omit<ComputePositionConfig, "platform">;
 type UpdatePosition = (contentOptions?: ComputeConfig) => void;
 type ReferenceAction = (node: HTMLElement) => void;
