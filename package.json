@@ -1,0 +1,25 @@
+{
+  "name": "floating-ui-svelte",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "package": "svelte-kit package",
+    "preview": "svelte-kit preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
+  },
+  "dependencies": {
+    "@floating-ui/dom": "0.1.6"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "next",
+    "@sveltejs/kit": "next",
+    "svelte": "3.44.2",
+    "svelte-check": "2.2.10",
+    "svelte-preprocess": "4.9.8",
+    "tslib": "2.3.1",
+    "typescript": "4.5.3"
+  }
+}
