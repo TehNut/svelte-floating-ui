@@ -11,7 +11,7 @@
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "dependencies": {
-    "@floating-ui/dom": "0.1.6"
+    "@floating-ui/dom": "^0.1.7"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",

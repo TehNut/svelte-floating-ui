@@ -1,6 +1,4 @@
-import type {
-  ComputePositionConfig
-} from '@floating-ui/core';
+import type { ComputePositionConfig } from '@floating-ui/core';
 import { computePosition } from "@floating-ui/dom";
 
 type ComputeConfig = Omit<ComputePositionConfig, "platform">;
@@ -8,7 +6,7 @@ type UpdatePosition = (contentOptions?: ComputeConfig) => void;
 type ReferenceAction = (node: HTMLElement) => void;
 type ContentAction = (node: HTMLElement, contentOptions?: ComputeConfig) => void;
 
-export function createFloatingUIActions(initOptions?: ComputeConfig): [ ReferenceAction, ContentAction, UpdatePosition ] {
+export function createFloatingActions(initOptions?: ComputeConfig): [ ReferenceAction, ContentAction, UpdatePosition ] {
   let referenceElement: HTMLElement;
   let contentElement: HTMLElement;
   let options: ComputeConfig | undefined = initOptions;
@@ -23,7 +21,6 @@ export function createFloatingUIActions(initOptions?: ComputeConfig): [ Referenc
             left: `${v.x}px`,
             top: `${v.y}px`,
           });
-          return v;
         });
     }
   }
@@ -33,7 +30,7 @@ export function createFloatingUIActions(initOptions?: ComputeConfig): [ Referenc
     updatePosition();
   }
 
-  const contentAction: ContentAction = (node, contentOptions) => {
+  const contentAction: ContentAction = (node, contentOptions?) => {
     contentElement = node;
     options = { ...initOptions, ...contentOptions };
     updatePosition();

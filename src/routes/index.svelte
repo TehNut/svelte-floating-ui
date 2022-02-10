@@ -1,8 +1,8 @@
 <script lang="ts">
   import { offset, flip, shift } from "@floating-ui/dom";
-  import { createFloatingUIActions } from "$lib";
+  import { createFloatingActions } from "$lib";
 
-  const [ floatingRef, floatingContent, update ] = createFloatingUIActions({
+  const [ floatingRef, floatingContent, update ] = createFloatingActions({
     strategy: "absolute",
     placement: "top",
     middleware: [
