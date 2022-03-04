@@ -16,17 +16,18 @@ Since Svelte automatically bundles all required dependencies, you only need to i
 
 ## Usage
 
-`createFloatingUIActions` takes an optional [options object](https://floating-ui.com/docs/computePosition#options) for configuring the content placement. The content action also takes an optional [options object](https://floating-ui.com/docs/computePosition#options) for updating the options of the content placement.
+`createFloatingActions` takes an optional [options object](https://floating-ui.com/docs/computePosition#options) for configuring the content placement. The content action also takes an optional [options object](https://floating-ui.com/docs/computePosition#options) for updating the options of the content placement.
 
-`createFloatingUIActions` also returns an `update` method as it's third value which can be used to [manually update](https://floating-ui.com/docs/computePosition#updating) the content position.
+`createFloatingActions` also returns an `update` method as it's third value which can be used to [manually update](https://floating-ui.com/docs/computePosition#updating) the content position.
 
 ### Example
 
 ```svelte
 <script lang="ts">
-  import { createFloatingUIActions, offset, shift, flip } from "svelte-floating-ui";
+  import { offset, flip, shift } from "@floating-ui/dom";
+  import { createFloatingActions } from "svelte-floating-ui";
 
-  const [ floatingRef, floatingContent ] = createFloatingUIActions({
+  const [ floatingRef, floatingContent ] = createFloatingActions({
     strategy: "absolute",
     placement: "top",
     middleware: [
@@ -63,7 +64,7 @@ If both are set, then the dynamic options will be merged with the initial option
 ```svelte
 <script>
   // set once and no longer updated
-  const [ floatingRef, floatingContent ] = createFloatingUIActions(initOptions);
+  const [ floatingRef, floatingContent ] = createFloatingActions(initOptions);
 </script>
 
 <!-- will be merged with initOptions -->
@@ -72,14 +73,70 @@ If both are set, then the dynamic options will be merged with the initial option
 
 ### Updating the Floating UI position
 
-The content element's position can be manually updated by using the third value returned by `createFloatingUIActions`. This method takes an optional options object which will be merged with the initial options.
+The content element's position can be manually updated by using the third value returned by `createFloatingActions`. This method takes an optional options object which will be merged with the initial options.
 
 ```svelte
 <script>
   // Get update method
-  const [ floatingRef, floatingContent, update] = createFloatingUIActions(initOptions);
+  const [ floatingRef, floatingContent, update] = createFloatingActions(initOptions);
 </script>
 
 <!-- Will be merged with initOptions -->
 <svelte:window on:resize={() => update(updateOptions)} />
+```
+
+### Applying custom styles on compute
+
+To apply styles manually, you can pass the `onComputed` option to `createFloatingActions`. This is a function that recieves a [`ComputePositionReturn`](https://floating-ui.com/docs/computeposition#return-value). This function is called every time the tooltip's position is computed.
+
+See [Arrow Middleware](#arrow-middleware) for an example on it's usage.
+
+## Arrow Middleware
+
+For convenience, a custom [Arrow middleware](https://floating-ui.com/docs/arrow) is provided. Rather than accepting an `HTMLElement`, this takes a `Writable<HTMLElement>`. Otherwise, this middleware works exactly as the regular Floating UI one, including needing to manually set the arrow styles.
+
+To set the styles, you can pass the [`onComputed`](#applying-custom-styles-on-compute) option.
+
+```svelte
+<script>
+  import { writable } from "svelte/store";
+  import { arrow } from "svelte-floating-ui";
+
+  const arrowRef = writable(null);
+  const [ floatingRef, floatingContent, update] = createFloatingActions({
+    strategy: "absolute",
+    placement: "bottom",
+    middleware: [
+      arrow({ element: arrowRef })
+    ],
+    onComputed({ placement, middlewareData }) {
+      const { x, y } = middlewareData.arrow;
+      const staticSide = {
+        top: 'bottom',
+        right: 'left',
+        bottom: 'top',
+        left: 'right',
+      }[placement.split('-')[0]];
+
+      Object.assign($arrowRef.style, {
+        left: x != null ? `${x}px` : "",
+        top: y != null ? `${y}px` : "",
+        [staticSide]: "-4px"
+      });
+    }
+  });
+</script>
+
+<button 
+  on:mouseenter={() => showTooltip = true}
+  on:mouseleave={() => showTooltip = false}
+  use:floatingRef
+>Hover me</button>
+
+{#if showTooltip}
+  <div class="tooltip" use:floatingContent>
+    Tooltip this is some longer text than the button
+    <div class="arrow" bind:this={$arrowRef} />
+  </div>
+{/if}
 ```
