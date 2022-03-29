@@ -1,8 +1,8 @@
-import type { ComputePositionConfig, ComputePositionReturn, Middleware, Padding } from '@floating-ui/core';
+import type { ComputePositionConfig, ComputePositionReturn, Middleware, Padding } from "@floating-ui/core";
 import { arrow as arrowCore } from "@floating-ui/core";
 import { computePosition } from "@floating-ui/dom";
 import type { Writable } from "svelte/store";
-import { get } from 'svelte/store';
+import { get } from "svelte/store";
 
 type ComputeConfig = Omit<ComputePositionConfig, "platform"> & { 
   onComputed?: (computed: ComputePositionReturn) => void

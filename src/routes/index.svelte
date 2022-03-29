@@ -16,11 +16,11 @@
     onComputed({ placement, middlewareData }) {
       const { x, y, } = middlewareData.arrow;
       const staticSide = {
-        top: 'bottom',
-        right: 'left',
-        bottom: 'top',
-        left: 'right',
-      }[placement.split('-')[0]];
+        top: "bottom",
+        right: "left",
+        bottom: "top",
+        left: "right",
+      }[placement.split("-")[0]];
 
       Object.assign($arrowRef.style, {
         left: x != null ? `${x}px` : "",
