@@ -4,15 +4,9 @@
 
 Heavily based on [svelte-popperjs by Bryan Lee](https://github.com/bryanmylee/svelte-popperjs).
 
-## Installation
-
 ```bash
-# TODO
+npm i floating-ui-svelte
 ```
-
-This is not yet published on npm
-
-Since Svelte automatically bundles all required dependencies, you only need to install this package as a dev dependency with the -D flag.
 
 ## Usage
 
