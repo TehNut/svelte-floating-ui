@@ -85,7 +85,7 @@ The content element's position can be manually updated by using the third value 
 <svelte:window on:resize={() => update(updateOptions)} />
 ```
 
-To have Floating UI handle position updates for you, pass `true` or [`AutoUpdateOptions`](https://floating-ui.com/docs/autoUpdate#options) to have it's builtin utility handle updates for you.
+To have Floating UI handle position updates for you, pass `true` or [`AutoUpdateOptions`](https://floating-ui.com/docs/autoUpdate#options) to the `autoUpdate` option to have it's builtin utility handle updates for you.
 
 ### Applying custom styles on compute
 
