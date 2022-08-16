@@ -25,7 +25,7 @@ Since Svelte automatically bundles all required dependencies, you only need to i
 ```svelte
 <script lang="ts">
   import { offset, flip, shift } from "@floating-ui/dom";
-  import { createFloatingActions } from "svelte-floating-ui";
+  import { createFloatingActions } from "floating-ui-svelte";
 
   const [ floatingRef, floatingContent ] = createFloatingActions({
     strategy: "absolute",
@@ -93,7 +93,7 @@ See [Arrow Middleware](#arrow-middleware) for an example on it's usage.
 
 ## Arrow Middleware
 
-For convenience, a custom [Arrow middleware](https://floating-ui.com/docs/arrow) is provided. Rather than accepting an `HTMLElement`, this takes a `Writable<HTMLElement>`. Otherwise, this middleware works exactly as the regular Floating UI one, including needing to manually set the arrow styles.
+For convenience, a custom [Arrow middleware](https://floating-ui.com/docs/arrow) is provided. This version of the middleware will accept either an `HTMLElement` or a `Readable<HTMLElement>`. Otherwise, this middleware works exactly as the regular Floating UI one, including needing to manually set the arrow styles.
 
 To set the styles, you can pass the [`onComputed`](#applying-custom-styles-on-compute) option. The below implementation is copied from the [Floating UI Tutorial](https://floating-ui.com/docs/tutorial#arrow-middleware).
 
