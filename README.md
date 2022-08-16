@@ -85,6 +85,8 @@ The content element's position can be manually updated by using the third value 
 <svelte:window on:resize={() => update(updateOptions)} />
 ```
 
+To have Floating UI handle position updates for you, pass `true` or [`AutoUpdateOptions`](https://floating-ui.com/docs/autoUpdate#options) to have it's builtin utility handle updates for you.
+
 ### Applying custom styles on compute
 
 To apply styles manually, you can pass the `onComputed` option to `createFloatingActions`. This is a function that recieves a [`ComputePositionReturn`](https://floating-ui.com/docs/computeposition#return-value). This function is called every time the tooltip's position is computed.

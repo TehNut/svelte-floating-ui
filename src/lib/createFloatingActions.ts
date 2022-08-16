@@ -1,4 +1,4 @@
-import { computePosition } from "@floating-ui/dom";
+import { autoUpdate, computePosition } from "@floating-ui/dom";
 import type { ComputeConfig, ContentAction, ReferenceAction, UpdatePosition } from "./types";
 
 export function createFloatingActions(initOptions?: ComputeConfig): [ ReferenceAction, ContentAction, UpdatePosition ] {
@@ -30,10 +30,14 @@ export function createFloatingActions(initOptions?: ComputeConfig): [ ReferenceA
   const contentAction: ContentAction = (node, contentOptions?) => {
     contentElement = node;
     options = { ...initOptions, ...contentOptions };
-    updatePosition();
+    const cleanupAutoUpdate = options.autoUpdate ? autoUpdate(referenceElement, contentElement, updatePosition, options.autoUpdate === true ? {} : options.autoUpdate) : undefined;
+    if (!cleanupAutoUpdate)
+      updatePosition();
+
     return {
-      update: updatePosition
-    }
+      update: updatePosition,
+      destroy: cleanupAutoUpdate
+    };
   }
 
   return [
