@@ -1,11 +1,6 @@
 import type { AutoUpdateOptions, ComputePositionConfig, ComputePositionReturn, Padding } from "@floating-ui/dom";
 import type { Readable } from "svelte/store";
 
-export * from '@floating-ui/dom';
-
-export { createFloatingActions } from './';
-export { arrow } from './';
-
 export type ComputeConfig = Omit<ComputePositionConfig, "platform"> & { 
   onComputed?: (computed: ComputePositionReturn) => void,
   autoUpdate?: AutoUpdateOptions | true
