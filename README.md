@@ -1,4 +1,4 @@
-# svelte-floating-ui
+# floating-ui-svelte
 
 [Floating UI](https://github.com/floating-ui/floating-ui/) for Svelte with [actions](https://svelte.dev/docs#use_action). No wrapper components or component bindings required!
 
