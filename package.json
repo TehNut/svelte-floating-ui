@@ -2,6 +2,11 @@
   "name": "floating-ui-svelte",
   "version": "1.0.0",
   "type": "module",
+  "license": "MIT",
+  "repository": {
+    "url": "github:TehNut/svelte-floating-ui"
+  },
+  "description": "Floating UI for Svelte with actions.",
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
