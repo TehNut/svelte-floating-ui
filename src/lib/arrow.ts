@@ -16,18 +16,16 @@ export function arrow(options?: ArrowOptions): Middleware {
         const element = get(options.element);
 
         if (element) {
-          arrowCore({
+          return arrowCore({
             element,
             padding: options.padding
           }).fn(args);
         }
-
-        return {};
       } else if (options.element) {
         return arrowCore({
           element: options.element,
           padding: options.padding
-        });
+        }).fn(args);
       }
 
       return {};
